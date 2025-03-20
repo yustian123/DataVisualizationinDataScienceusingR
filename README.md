@@ -28,3 +28,20 @@ plot.jakarta <- plot.jakarta + labs(title="Luas Wilayah vs Kepadatan Penduduk DK
 plot.jakarta <- plot.jakarta + labs(x="Luas Wilayah (km2)", y = "Kepadatan Jiwa per km2")
 plot.jakarta
 ```
+##Fungsi summary untuk objek ggplot
+Melihat detilnya dalam bentuk tekstual dengan menggunakan fungsi summary.
+```
+library(ggplot2)
+plot.jakarta <- ggplot()
+plot.jakarta <- plot.jakarta + labs(title="Luas Wilayah vs Kepadatan Penduduk DKI Jakarta")
+plot.jakarta <- plot.jakarta + labs(x = "Luas Wilayah (km2)", y="Kepadatan Jiwa per km2")
+summary(plot.jakarta)
+```
+##Membaca Dataset Kependudukan dengan read.csv
+```
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+```
+##Menampilkan beberapa kolom tertent
+```
+
+```
