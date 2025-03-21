@@ -50,3 +50,24 @@ penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepada
 plot.dki <- ggplot(data = penduduk.dki)
 summary(plot.dki)
 ```
+grafik bisa dihasilkan dengan menambahkan layer secara berlapis di atas plot.
+
+Setiap layer terdiri dari objek-objek berikut:
+
+Geom: Bentuk geometri seperti garis (line), batang (bar), titik (point), dan lain-lain.
+Stat: Atau suatu fungsi untuk melakukan transformasi statistik terhadap data input.
+Contoh paling sederhana adalah transformasi data untuk kepadatan jiwa dari angka menjadi range atau inverval per lima ribuan. Jadi data input dengan angka 8041 diubah menjadi interval angka 8001-8500. Transformasi ini disebut dengan bin. Jika kita tidak ingin mengubah apa-apa, stat yang kita gunakan adalah identity.
+Position: Posisi dari beberapa data yang memiliki nilai yang sama. Jika diplot sebagai scatter plot misalnya, tentunya data-data tersebut akan menumpuk di satu titik. Apakah perlu ditambahkan nilai acak tertentu sehingga pas digambarkan, terlihat datanya lebih tersebar? Jika iya, maka ini namanya jitter. Jika kita tidak ingin merubah posisi, maka kita gunakan identity.
+
+## Scatter Plot Kepadatan Penduduk Jakarta dengan function layer
+```
+library(ggplot2)
+#Membaca data csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+
+#Menambahkan data dan aesthetic mapping
+plot.dki <- ggplot(data=penduduk.dki, aes(x = LUAS.WILAYAH..KM2.,  y=KEPADATAN..JIWA.KM2.,  color=NAMA.KABUPATEN.KOTA))
+
+#Menambahkan layer untuk menghasilkan grafik scatter plot
+plot.dki + layer(geom = "point", stat = "identity", position = "identity")
+```
