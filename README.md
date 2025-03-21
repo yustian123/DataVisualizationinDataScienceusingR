@@ -125,5 +125,44 @@ plot.dki <- ggplot(data=penduduk.dki, aes(x = KEPADATAN..JIWA.KM2., fill = NAMA.
 
 plot.dki + geom_histogram(binwidth = 10000)
 ```
+## Line chart
+Line chart atau grafik garis adalah tipe visualisasi yang sangat baik untuk menggambarkan apa impact (pengaruh) dari perubahan suatu variabel dari satu titik ke titik lain atau trend– dan variabel yang paling umum digunakan adalah waktu.
+
+Sebagai contoh, di bidang ekonomi untuk menggambarkan inflasi dari bulan ke bulan. Namun tentunya tidak harus selalu waktu. Perubahan lain, misalkan pengaruh kecepatan lari dengan peningkatan detak jantung.
+
+Untuk membuat line chart standar, kita gunakan geom bertipe "line" dan stat "identity", yang bisa diwakili oleh function geom_line.
+### Membaca data inflasi
+```
+#Membaca data csv dan dimasukkan ke variable inflasi.indo.sing
+inflasi.indo.sing <- read.csv("https://storage.googleapis.com/dqlab-dataset/inflasi.csv", sep=",")
+inflasi.indo.sing
+```
+### Plotting Line Chart yang Kosong
+```
+library(ggplot2)
+
+#Membaca data csv dan dimasukkan ke variable inflasi.indo.sing
+inflasi.indo.sing <- read.csv("https://storage.googleapis.com/dqlab-dataset/inflasi.csv", sep=",")
+
+#Menambahkan data dan aesthetic mapping
+plot.inflasi <- ggplot(data=inflasi.indo.sing, aes(x = Bulan,  y=Inflasi,  color=Negara))
+
+#Menambahkan layer
+plot.inflasi + geom_line()
+```
+### Menggunakan Pengelompokan Data (grouping)
+```
+library(ggplot2)
+
+#Membaca data csv dan dimasukkan ke variable inflasi.indo.sing
+inflasi.indo.sing <- read.csv("https://storage.googleapis.com/dqlab-dataset/inflasi.csv", sep=",")
+
+#Menambahkan data dan aesthetic mapping
+plot.inflasi <- ggplot(data=inflasi.indo.sing, aes(x = Bulan,  y=Inflasi,  color=Negara, group=Negara))
+
+#Menambahkan Layer
+plot.inflasi + geom_line()
+```
+
 
 
