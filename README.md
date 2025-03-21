@@ -84,4 +84,46 @@ plot.dki <- ggplot(data=penduduk.dki, aes(x = LUAS.WILAYAH..KM2.,  y=KEPADATAN..
 plot.dki + geom_point()
 ```
 ## Menambahkan Judul dan Label
+```
+library(ggplot2)
+
+#Membaca data csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+
+#Menambahkan data dan aesthetic mapping
+plot.dki <- ggplot(data=penduduk.dki, aes(x = LUAS.WILAYAH..KM2.,  y=KEPADATAN..JIWA.KM2.,  color=NAMA.KABUPATEN.KOTA))
+
+#Menambahkan Layer dan labels
+plot.dki + geom_point() + 
+  theme(plot.title = element_text(hjust=0.5)) + labs(title = "Luas Wilayah vs Kepadatan Penduduk DKI Jakarta", x = "Luas wilayah (km2)", y = "Kepadatan Jiwa per km2", color = "Nama Kabupaten/Kota")
+```
+Pada code terdapat perintah baru, yaitu theme(plot.title = element_text(hjust=0.5)). Ini adalah code untuk menempatkan judul di tengah plot.
+## Histogram
+Histogram adalah tipe visualisasi yang sangat cocok untuk menggambarkan data distribusi dari jumlah populasi data. Dan dataset kependudukan adalah contoh yang baik dimana kita bisa menggambarkan distribusi kepadatan penduduk dengan jumlah kelurahan.
+
+Untuk membuat histogram, kita gunakan geom bertipe histogram dan stat bin, yang bisa diwakili oleh function geom_histogram.
+### Layer geom_histogram dan Lebar Interval
+```
+library(ggplot2)
+
+#Membaca data csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+
+#Menambahkan data dan aesthetic mapping
+plot.dki <- ggplot(data=penduduk.dki, aes(x = KEPADATAN..JIWA.KM2.))
+plot.dki + geom_histogram(binwidth=10000)
+```
+binwidth = Lebar interval data, dalam hal ini 5000
+### Penggunaaan aesthetic fill
+```
+library(ggplot2)
+
+#Membaca data csv dan dimasukkan ke variable penduduk.dki
+penduduk.dki <- read.csv("https://storage.googleapis.com/dqlab-dataset/dkikepadatankelurahan2013.csv", sep=",")
+
+plot.dki <- ggplot(data=penduduk.dki, aes(x = KEPADATAN..JIWA.KM2., fill = NAMA.KABUPATEN.KOTA))
+
+plot.dki + geom_histogram(binwidth = 10000)
+```
+
 
